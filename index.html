@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bijberoep berekenen 2026 · Calcul activité complémentaire 2026</title>
+<meta name="description" content="Gratis rekenmodule voor sociale bijdragen, btw-drempel en opstartstappen in bijberoep. Calculateur gratuit des cotisations sociales et du seuil TVA.">
+<link rel="canonical" href="https://cyril-enko-business.github.io/">
+<link rel="alternate" hreflang="nl-BE" href="https://cyril-enko-business.github.io/nl/">
+<link rel="alternate" hreflang="fr-BE" href="https://cyril-enko-business.github.io/fr/">
+<link rel="alternate" hreflang="x-default" href="https://cyril-enko-business.github.io/">
+<style>
+  :root{
+    --paper:#f7f5f0;
+    --surface:#ffffff;
+    --sunken:#efece5;
+    --ink:#1b1a16;
+    --ink-soft:#4f4c44;
+    --ink-faint:#807c72;
+    --rule:#ddd8cd;
+    --rule-strong:#c4bdae;
+    --accent:#1d4e5f;
+    --accent-soft:#e3edf0;
+    --ok:#2c6349;
+    --ok-soft:#e2efe8;
+    --warn:#8a5c11;
+    --warn-soft:#f7eeda;
+    --alert:#8f3328;
+    --alert-soft:#f8e7e3;
+    --field:#ffffff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14150f;
+      --surface:#1c1e18;
+      --sunken:#222419;
+      --ink:#eceade;
+      --ink-soft:#aeaa9b;
+      --ink-faint:#7e7a6d;
+      --rule:#2e3128;
+      --rule-strong:#434638;
+      --accent:#79bdcf;
+      --accent-soft:#17323a;
+      --ok:#7cc3a0;
+      --ok-soft:#162c22;
+      --warn:#dbab55;
+      --warn-soft:#2e2413;
+      --alert:#e58a7c;
+      --alert-soft:#331b17;
+      --field:#232620;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14150f; --surface:#1c1e18; --sunken:#222419;
+    --ink:#eceade; --ink-soft:#aeaa9b; --ink-faint:#7e7a6d;
+    --rule:#2e3128; --rule-strong:#434638;
+    --accent:#79bdcf; --accent-soft:#17323a;
+    --ok:#7cc3a0; --ok-soft:#162c22;
+    --warn:#dbab55; --warn-soft:#2e2413;
+    --alert:#e58a7c; --alert-soft:#331b17;
+    --field:#232620;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:40px 24px 80px}
+  h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+  h1{font-size:clamp(30px,4.4vw,44px);line-height:1.08;margin:0 0 10px}
+  h2{font-size:22px;margin:0 0 4px}
+  h3{font-size:17px;margin:0 0 4px}
+  p{margin:0 0 12px}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 12px
+  }
+  header p.lede{font-size:18px;color:var(--ink-soft);max-width:62ch;margin:0}
+  .langbar{display:flex;gap:6px;margin:22px 0 0}
+  .langbar button{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.08em;
+    padding:6px 12px;border:1px solid var(--rule-strong);background:transparent;color:var(--ink-soft);
+    border-radius:2px;cursor:pointer
+  }
+  .langbar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+  .langbar button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .cols{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:32px;margin-top:34px;align-items:start}
+  @media (max-width:880px){.cols{grid-template-columns:1fr}}
+
+  .panel{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:22px}
+  .panel + .panel{margin-top:18px}
+  fieldset{border:0;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:14px}
+  legend{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-faint);padding:0;margin-bottom:12px
+  }
+  label{display:block;font-size:13.5px;color:var(--ink-soft);margin-bottom:5px;font-weight:500}
+  .hint{font-size:12.5px;color:var(--ink-faint);margin-top:4px;line-height:1.45}
+  input[type=number],select{
+    width:100%;padding:9px 11px;border:1px solid var(--rule-strong);border-radius:2px;
+    background:var(--field);color:var(--ink);font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:15px;font-variant-numeric:tabular-nums
+  }
+  select{font-family:"IBM Plex Sans",sans-serif}
+  input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .check{display:flex;gap:10px;align-items:flex-start}
+  .check input{margin-top:4px;accent-color:var(--accent);width:16px;height:16px;flex:0 0 auto}
+  .check label{margin:0;font-size:14px;color:var(--ink)}
+
+  .verdict{border:1px solid var(--rule);border-left-width:4px;border-radius:3px;padding:20px 22px;background:var(--surface)}
+  .verdict.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+  .verdict.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+  .verdict.alert{border-left-color:var(--alert);background:var(--alert-soft)}
+  .figure{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:clamp(28px,4vw,38px);font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1;margin:6px 0 4px}
+  .figure small{font-size:15px;font-weight:400;color:var(--ink-soft);margin-left:6px}
+
+  .rows{display:flex;flex-direction:column;margin-top:18px;border-top:1px solid var(--rule)}
+  .row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+  .row span:first-child{color:var(--ink-soft)}
+  .row span:last-child{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;text-align:right}
+  .row.total span{font-weight:600;color:var(--ink)}
+
+  .note{border:1px solid var(--rule);border-left:3px solid var(--accent);background:var(--sunken);padding:14px 16px;border-radius:2px;font-size:14px;color:var(--ink-soft)}
+  .note.warn{border-left-color:var(--warn)}
+  .note.alert{border-left-color:var(--alert)}
+  .note strong{color:var(--ink)}
+
+  ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:flex;flex-direction:column;gap:16px}
+  ol.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:14px}
+  ol.steps li::before{
+    content:counter(s);font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--accent);
+    border:1px solid var(--rule-strong);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;margin-top:2px
+  }
+  .step-cost{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-faint);letter-spacing:.02em}
+  .deadline{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--warn);border:1px solid currentColor;padding:1px 6px;border-radius:2px;margin-left:8px}
+
+  table.cal{width:100%;border-collapse:collapse;font-size:14px}
+  table.cal th,table.cal td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule)}
+  table.cal th{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+  table.cal td:last-child{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .sources{font-size:13.5px;color:var(--ink-soft)}
+  .sources li{margin-bottom:7px}
+  .sources a{color:var(--accent);text-underline-offset:2px}
+  .disclaimer{margin-top:34px;padding:18px 20px;border:1px dashed var(--rule-strong);border-radius:3px;font-size:13.5px;color:var(--ink-soft);background:var(--sunken)}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-faint)}
+  .block{margin-top:34px}
+  .scroll{overflow-x:auto}
+  a{color:var(--accent)}
+
+.stamp{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;color:var(--ink-faint);margin:10px 0 0}
+.langbar a{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;
+  padding:6px 12px;border:1px solid var(--rule-strong);border-radius:2px;color:var(--ink-soft);text-decoration:none}
+.langbar a:hover{border-color:var(--accent);color:var(--accent)}
+#flags{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.faq details{border-bottom:1px solid var(--rule);padding:12px 0}
+.faq details:last-child{border-bottom:0}
+.faq summary{cursor:pointer;font-weight:600;font-size:15.5px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--accent);margin-right:10px;font-weight:600}
+.faq details[open] summary::before{content:"−"}
+.faq details div{padding:8px 0 2px 26px;color:var(--ink-soft);font-size:15px}
+table.cal th[scope=row]{font-weight:500;color:var(--ink-soft);font-family:"IBM Plex Sans",sans-serif;
+  font-size:14px;letter-spacing:0;text-transform:none}
+.verdict .sub{margin:6px 0 0;color:var(--ink-soft)}
+.verdict .vlab{color:var(--ink-soft);font-family:"IBM Plex Sans",sans-serif;font-size:14px;font-weight:500;margin:0}
+
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+@media(max-width:620px){.pick{grid-template-columns:1fr}}
+.pick a{display:block;padding:24px;border:1px solid var(--rule);border-radius:3px;background:var(--surface);text-decoration:none;color:var(--ink)}
+.pick a:hover{border-color:var(--accent)}
+.pick strong{display:block;font-family:Newsreader,serif;font-size:22px;margin-bottom:6px}
+</style></head>
+<body><div class="wrap" style="max-width:760px">
+<p class="eyebrow">België · Belgique · 2026</p>
+<h1>Bijberoep of activité complémentaire?</h1>
+<p class="lede">Bereken je sociale bijdragen, je btw-drempel en je opstartstappen — met de cijfers van 2026.<br>
+Calculez vos cotisations sociales, votre seuil TVA et vos démarches — avec les chiffres de 2026.</p>
+<div class="pick">
+<a href="nl/"><strong>Nederlands</strong>Sociale bijdragen, btw-drempel en stappenplan voor een bijberoep in België.</a>
+<a href="fr/"><strong>Français</strong>Cotisations sociales, seuil TVA et démarches pour une activité complémentaire en Belgique.</a>
+</div>
+<footer style="margin-top:40px">Cijfers 2026 · chiffres 2026 · 2026-09-02</footer>
+</div></body></html>
